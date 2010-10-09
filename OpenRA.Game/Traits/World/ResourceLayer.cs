@@ -22,7 +22,26 @@ namespace OpenRA.Traits
 		World world;
 
 		public ResourceType[] resourceTypes;
+		int sizeX, sizeY;
 		CellContents[,] content;
+
+		[Sync]
+		int ResourceSync
+		{
+			get
+			{
+				int ret = 0x12345678;
+				for( int i = 0 ; i < sizeY ; i++ )
+				{
+					for( int j = 0 ; j < sizeX ; j++ )
+					{
+						ret += ( 5 * i + 9 * j ) * ( 1 + content[ j, i ].density );
+						ret = ret >> 10 + ret << 10;
+					}
+				}
+				return ret;
+			}
+		}
 		
 		public void Render()
 		{
@@ -58,6 +77,8 @@ namespace OpenRA.Traits
 		public void WorldLoaded(World w)
 		{
 			this.world = w;
+			sizeX = w.Map.MapSize.X;
+			sizeY = w.Map.MapSize.Y;
 			content = new CellContents[w.Map.MapSize.X, w.Map.MapSize.Y];
 
 			resourceTypes = w.WorldActor.TraitsImplementing<ResourceType>().ToArray();
