@@ -147,10 +147,12 @@ World:
 		Name: fog
 	Country@0:
 		Name: Allies
-		Race: allies
+		UiTheme: allies
+		VoiceTheme: allies
 	Country@1:
 		Name: Soviet
-		Race: soviet
+		UiTheme: soviet
+		VoiceTheme: soviet
 	BibLayer:
 	ResourceLayer:
 	ResourceType@ore:

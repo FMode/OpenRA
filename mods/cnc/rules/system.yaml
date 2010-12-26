@@ -96,10 +96,12 @@ World:
 		Name: fog
 	Country@gdi:
 		Name: GDI
-		Race: gdi
+		UiTheme: gdi
+		VoiceTheme: gdi
 	Country@nod:
 		Name: Nod
-		Race: nod
+		UiTheme: nod
+		VoiceTheme: nod
 	ChooseBuildTabOnSelect:
 	BibLayer:
 	ResourceLayer:

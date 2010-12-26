@@ -33,7 +33,7 @@ namespace OpenRA.Mods.RA
         public bool IsBuildableBy(CountryInfo ci)
         {
             return ci != null && 
-                (Owner.Contains(ci.Name) || 
+                (Owner.Contains(ci.Name.ToLowerInvariant()) || 
                 IsBuildableBy(ci.GetParentCountry()));
         }
 	}

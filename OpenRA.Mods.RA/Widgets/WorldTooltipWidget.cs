@@ -88,7 +88,7 @@ namespace OpenRA.Mods.RA.Widgets
 					new float2(Viewport.LastMousePos.X + 65 + sz2.X, Viewport.LastMousePos.Y + 50), Color.White);
 
 				WidgetUtils.DrawRGBA(
-					ChromeProvider.GetImage("flags", actor.Owner.Country.Name),
+					ChromeProvider.GetImage("flags", actor.Owner.Country.Name.ToLowerInvariant()),
 					new float2(Viewport.LastMousePos.X + 30, Viewport.LastMousePos.Y + 50));
 			}
 		}
