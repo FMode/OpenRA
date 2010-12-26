@@ -27,17 +27,12 @@ namespace OpenRA.Mods.RA
 		{
 			Info = info;
 		}
-		
-		public void OnCapture (Actor self, Actor captor, Player oldOwner, Player newOwner)
-		{
-			if (captor.World.LocalPlayer != captor.Owner)
-				return;
-			
-			if (Info.Race != null && Info.Race != oldOwner.Country.Race)
-				return;
-			
-			Sound.PlayToPlayer(captor.World.LocalPlayer, Info.Notification);
-		}
+
+        public void OnCapture(Actor self, Actor captor, Player oldOwner, Player newOwner)
+        {
+            if (Info.Race == null || Info.Race == oldOwner.Country.Name)
+                Sound.PlayToPlayer(captor.Owner, Info.Notification);
+        }
 	}
 }
 

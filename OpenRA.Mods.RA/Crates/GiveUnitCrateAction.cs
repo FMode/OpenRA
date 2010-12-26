@@ -36,7 +36,7 @@ namespace OpenRA.Mods.RA.Crates
 
 			// this unit is not buildable by the collector's country, so
 			// don't give them free ones either.
-			if (!bi.Owner.Contains(collector.Owner.Country.Race)) return 0;
+			if (!bi.IsBuildableBy(collector.Owner.Country)) return 0;
 
 			// avoid dumping tanks in the sea, and ships on dry land.
 			if (!GetSuitableCells(collector.Location).Any()) return 0;

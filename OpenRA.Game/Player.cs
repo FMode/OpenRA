@@ -57,7 +57,7 @@ namespace OpenRA
 			PlayerName = InternalName = pr.Name;
 			NonCombatant = pr.NonCombatant;
 			Country = world.GetCountries()
-				.FirstOrDefault(c => pr.Race == c.Race)
+				.FirstOrDefault(c => pr.Race == c.Name)
 				?? world.GetCountries().Random(world.SharedRandom);
 
 			PlayerRef = pr;
@@ -76,7 +76,7 @@ namespace OpenRA
 
 			InternalName = pr.Name;
 			Country = world.GetCountries()
-				.FirstOrDefault(c => client != null && client.Country == c.Race)
+				.FirstOrDefault(c => client != null && client.Country == c.Name)
 				?? world.GetCountries().Random(world.SharedRandom);
 
 			ClientIndex = client.Index;

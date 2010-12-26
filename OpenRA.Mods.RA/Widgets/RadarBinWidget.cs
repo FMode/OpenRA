@@ -128,7 +128,7 @@ namespace OpenRA.Mods.RA.Widgets
 		{
 			if( world == null || world.LocalPlayer == null ) return;
 
-			radarCollection = "radar-" + world.LocalPlayer.Country.Race;
+			radarCollection = "radar-" + world.LocalPlayer.Country.UiTheme;
 
 			Game.Renderer.RgbaSpriteRenderer.DrawSprite(ChromeProvider.GetImage(radarCollection, "left"), radarOrigin);
 			Game.Renderer.RgbaSpriteRenderer.DrawSprite(ChromeProvider.GetImage(radarCollection, "right"), radarOrigin + new float2(201, 0));

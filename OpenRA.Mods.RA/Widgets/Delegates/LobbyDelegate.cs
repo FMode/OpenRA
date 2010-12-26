@@ -23,7 +23,7 @@ namespace OpenRA.Mods.RA.Widgets.Delegates
 	{
 		Widget Players, LocalPlayerTemplate, RemotePlayerTemplate, EmptySlotTemplate, EmptySlotTemplateHost;
 		
-		Dictionary<string, string> CountryNames;
+		List<string> CountryNames;
 		string MapUid;
 		Map Map;
 		
@@ -72,9 +72,9 @@ namespace OpenRA.Mods.RA.Widgets.Delegates
 				return sc;
 			};
 
-			CountryNames = Rules.Info["world"].Traits.WithInterface<OpenRA.Traits.CountryInfo>().ToDictionary(a => a.Race, a => a.Name);
+            CountryNames = Rules.Info["world"].Traits.WithInterface<OpenRA.Traits.CountryInfo>().Select(a => a.Name).ToList();
 
-			CountryNames.Add("random", "Random");
+			CountryNames.Add("Random");
 
 			var mapButton = lobby.GetWidget("CHANGEMAP_BUTTON");
 			mapButton.OnMouseUp = mi =>
@@ -237,8 +237,8 @@ namespace OpenRA.Mods.RA.Widgets.Delegates
 			foreach (var c in CountryNames)
 			{
 				var cc = c;
-				dropDownOptions.Add(new Pair<string, Action>( cc.Key,
-					() => orderManager.IssueOrder( Order.Command("race "+cc.Key) )) );
+				dropDownOptions.Add(new Pair<string, Action>( cc,
+					() => orderManager.IssueOrder( Order.Command("race "+cc) )) );
 			};
 
 			DropDownButtonWidget.ShowDropDown( race,
@@ -248,7 +248,7 @@ namespace OpenRA.Mods.RA.Widgets.Delegates
 					var ret = new LabelWidget
 					{
 						Bounds = new Rectangle(0, 0, w, 24),
-						Text = "          {0}".F(CountryNames[ac.First]),
+						Text = "          {0}".F(ac.First),
 						OnMouseUp = mi => { ac.Second(); return true; },
 					};
 				
@@ -406,7 +406,7 @@ namespace OpenRA.Mods.RA.Widgets.Delegates
 					faction.OnMouseDown = _ => ShowRaceDropDown(s, faction);
 					
 					var factionname = faction.GetWidget<LabelWidget>("FACTIONNAME");
-					factionname.GetText = () => CountryNames[c.Country];
+					factionname.GetText = () => c.Country;
 					var factionflag = faction.GetWidget<ImageWidget>("FACTIONFLAG");
 					factionflag.GetImageName = () => c.Country;
 					factionflag.GetImageCollection = () => "flags";
@@ -439,7 +439,7 @@ namespace OpenRA.Mods.RA.Widgets.Delegates
 
 					var faction = template.GetWidget<LabelWidget>("FACTION");
 					var factionname = faction.GetWidget<LabelWidget>("FACTIONNAME");
-					factionname.GetText = () => CountryNames[c.Country];
+					factionname.GetText = () => c.Country;
 					var factionflag = faction.GetWidget<ImageWidget>("FACTIONFLAG");
 					factionflag.GetImageName = () => c.Country;
 					factionflag.GetImageCollection = () => "flags";

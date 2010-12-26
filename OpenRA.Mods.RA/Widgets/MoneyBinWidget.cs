@@ -32,8 +32,8 @@ namespace OpenRA.Mods.RA.Widgets
 
 			var playerResources = world.LocalPlayer.PlayerActor.Trait<PlayerResources>();
 
-			var digitCollection = "digits-" + world.LocalPlayer.Country.Race;
-			var chromeCollection = "chrome-" + world.LocalPlayer.Country.Race;
+			var digitCollection = "digits-" + world.LocalPlayer.Country.UiTheme;
+			var chromeCollection = "chrome-" + world.LocalPlayer.Country.UiTheme;
 
 			Game.Renderer.RgbaSpriteRenderer.DrawSprite(
 				ChromeProvider.GetImage(chromeCollection, "moneybin"),

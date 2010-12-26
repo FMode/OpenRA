@@ -36,7 +36,7 @@ namespace OpenRA.Mods.RA.Widgets
 		{
 			if( world.LocalPlayer == null ) return;
 
-			powerCollection = "power-" + world.LocalPlayer.Country.Race;
+			powerCollection = "power-" + world.LocalPlayer.Country.UiTheme;
 
 			var power = world.LocalPlayer.PlayerActor.Trait<PowerManager>();
 

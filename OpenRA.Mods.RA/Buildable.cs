@@ -8,6 +8,7 @@
  */
 #endregion
 
+using System.Linq;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.RA
@@ -28,6 +29,13 @@ namespace OpenRA.Mods.RA
 		public readonly int BuildPaletteOrder = 9999;
         public readonly string Hotkey = null;
 		public object Create(ActorInitializer init) { return new Buildable(); }
+
+        public bool IsBuildableBy(CountryInfo ci)
+        {
+            return ci != null && 
+                (Owner.Contains(ci.Name) || 
+                IsBuildableBy(ci.GetParentCountry()));
+        }
 	}
 
 	class Buildable { }

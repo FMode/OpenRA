@@ -51,7 +51,7 @@ namespace OpenRA.Mods.RA
 			{
 				var bi = a.Traits.Get<BuildableInfo>();
 				// Can our race build this by satisfying normal prereqs?
-				var buildable = bi.Owner.Contains(self.Owner.Country.Race);
+                var buildable = bi.IsBuildableBy(self.Owner.Country);
 				Produceable.Add( a, new ProductionState(){ Visible = buildable && !bi.Hidden } );
 				if (buildable)
 					ttc.Add( a.Name, a.Traits.Get<BuildableInfo>().Prerequisites.ToList(), this );

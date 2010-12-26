@@ -190,7 +190,7 @@ namespace OpenRA.Mods.RA.Widgets
 			buttons.Clear();
 			if (queue == null) return 0;
 			
-			string paletteCollection = "palette-" + world.LocalPlayer.Country.Race;
+			string paletteCollection = "palette-" + world.LocalPlayer.Country.UiTheme;
 			float2 origin = new float2(paletteOrigin.X + 9, paletteOrigin.Y + 9);
 						
 			// Collect info
@@ -406,7 +406,7 @@ namespace OpenRA.Mods.RA.Widgets
 				var producing = queue.CurrentItem();
 				var index = queue == CurrentQueue ? 2 : (producing != null && producing.Done) ? 1 : 0;
 				
-				var race = world.LocalPlayer.Country.Race;
+				var race = world.LocalPlayer.Country.UiTheme;
 				WidgetUtils.DrawRGBA(ChromeProvider.GetImage("tabs-"+tabKeys[index], race+"-"+queue.Info.Type), new float2(x, y));
 				
 				var rect = new Rectangle((int)x,(int)y,(int)tabWidth,(int)tabHeight);
