@@ -24,7 +24,7 @@ namespace OpenRA.Mods.RA.Missions
         {
             ticks++;
 
-            if ((ticks % 300) == 200)
+            if ((ticks % 50) == 20)
             {
                 var w = self.World;
                 var neutralPlayer = w.players.Values.First(p => p.PlayerRef.OwnsWorld);
@@ -40,7 +40,7 @@ namespace OpenRA.Mods.RA.Missions
                 }
             }
 
-            if ((ticks % 300) == 220)
+            if ((ticks % 50) == 21)
             {
                 foreach (var badr in self.World.Actors.Where(a => a.Info.Name == "badr"))
                     badr.Kill(badr);
