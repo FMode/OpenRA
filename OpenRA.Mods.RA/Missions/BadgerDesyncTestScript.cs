@@ -11,6 +11,7 @@
 using System.Linq;
 using OpenRA.Traits;
 using OpenRA.FileFormats;
+using OpenRA.Mods.RA.Air;
 
 namespace OpenRA.Mods.RA.Missions
 {
@@ -37,10 +38,12 @@ namespace OpenRA.Mods.RA.Missions
                             new AltitudeInit( 30 ),
                             new LocationInit( w.ChooseRandomCell( w.SharedRandom ) ),
                             new FacingInit( w.SharedRandom.Next(256) ) });
+
+                    badr.QueueActivity(Fly.ToCell(w.ChooseRandomCell(w.SharedRandom)));
                 }
             }
 
-            if ((ticks % 50) == 21)
+            if ((ticks % 50) == 41)
             {
                 foreach (var badr in self.World.Actors.Where(a => a.Info.Name == "badr"))
                     badr.Kill(badr);
