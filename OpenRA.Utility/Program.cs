@@ -28,8 +28,10 @@ namespace OpenRA.Utility
 				return null;	// no special pipe security required
 
 			var ps = new PipeSecurity();
-			ps.AddAccessRule(new PipeAccessRule("EVERYONE", (PipeAccessRights)2032031, AccessControlType.Allow));
-			return ps;	
+			//ps.AddAccessRule(new PipeAccessRule("EVERYONE", (PipeAccessRights)2032031, AccessControlType.Allow));
+            ps.AddAccessRule(new PipeAccessRule(new SecurityIdentifier(System.Security.Principal.WellKnownSidType.WorldSid, null), (PipeAccessRights)2032031, AccessControlType.Allow));
+            
+            return ps;	
 		}
 
 		static void Main(string[] args)
